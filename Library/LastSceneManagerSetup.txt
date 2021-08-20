@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/UpdatedWorld.unity
+- path: Assets/Scenes/TestTimber.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -3,3 +3,5 @@ Packages
 UserSettings
 Assembly-CSharp.csproj
 MineClone.sln
+Library/Il2cppBuildCache
+Library/il2cpp_cache

@@ -7,7 +7,7 @@ public class RBiome {
         name: "Default",
         solidGroundHeight: 42,
         terrainHeight: 20,
-        terrainScale: 0.19f,
+        terrainScale: 0.41f,
         lodes: new RLode[]{
             new RLode(
                 minHeight: 1,
@@ -19,7 +19,7 @@ public class RBiome {
             ),
             new RLode(
                 minHeight: 30,
-                maxHeight: 41,
+                maxHeight: 40,
                 scale: 0.2f,
                 threshold: 0.6f,
                 noiseOffset: 100,
@@ -27,9 +27,9 @@ public class RBiome {
             ),
             new RLode(
                 minHeight: 10,
-                maxHeight: 42,
-                scale: 0.1f,
-                threshold: 0.8f,
+                maxHeight: 50,
+                scale: 0.2f,
+                threshold: 0.7f,
                 noiseOffset: 200,
                 block: RBlock.AIR
             )

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 
 public class RUtils {
-    public delegate bool ListPredicate<T>(T item, int index);
+    public delegate bool ListFilterPredicate<T>(T item, int index);
 
     public static List<T> FilterList<T>(
         List<T> originalList,
-        ListPredicate<T> predicate
+        ListFilterPredicate<T> predicate
     ) {
         List<T> newList = new List<T>();
 
@@ -17,5 +17,17 @@ public class RUtils {
         }
 
         return newList;
+    }
+
+    public delegate void ListIteratePredicate<T>(T item, int index);
+
+    public static void ForEachInList<T>(
+        List<T> list,
+        ListIteratePredicate<T> predicate
+    ) {
+        for (int index = 0; index < list.Count; index += 1) {
+            T item = list[index];
+            predicate(item, index);
+        }
     }
 }
