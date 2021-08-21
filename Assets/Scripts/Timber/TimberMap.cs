@@ -38,7 +38,7 @@ public class TimberMap {
         return new TimberMapSquare(x: x, y: y, z: z);
     }
 
-    public void computeVerticesAndTriangles() {
+    public void ComputeVerticesAndTriangles() {
         this.gameObject = new GameObject();
         this.gameObject.name = "Game map";
 
@@ -70,10 +70,6 @@ public class TimberMap {
             TimberMapSquare leftNeighbor = indexLeft == -1 ? null : squares[indexLeft];
             TimberMapSquare topNeighbor = indexTop == -1 ? null : squares[indexTop];
             TimberMapSquare bottomNeighbor = indexBottom == -1 ? null : squares[indexBottom];
-
-            if (squareIndex == 3) {
-                Debug.Log("indexBottom: " + indexBottom);
-            }
 
             currentSquare.assignVertexIndexIfExist(
                 origin: rightNeighbor,
@@ -142,20 +138,16 @@ public class TimberMap {
                 vertices.Add(new Vector3(currentSquare.x + 0.5f, currentSquare.y, currentSquare.z + 0.5f));
             }
 
-            if (squareIndex == 3) {
-                Debug.Log("Computed vertices " + currentSquare.GetVerticesAsString(this.vertices));
-            }
-
             // Vertices at the base of square
-            triangles.Add(currentSquare.vertexIndexes[0]);
-            triangles.Add(currentSquare.vertexIndexes[1]);
-            triangles.Add(currentSquare.vertexIndexes[2]);
+            this.triangles.Add(currentSquare.vertexIndexes[0]);
+            this.triangles.Add(currentSquare.vertexIndexes[1]);
+            this.triangles.Add(currentSquare.vertexIndexes[2]);
 
-            triangles.Add(currentSquare.vertexIndexes[2]);
-            triangles.Add(currentSquare.vertexIndexes[3]);
-            triangles.Add(currentSquare.vertexIndexes[0]);
+            this.triangles.Add(currentSquare.vertexIndexes[2]);
+            this.triangles.Add(currentSquare.vertexIndexes[3]);
+            this.triangles.Add(currentSquare.vertexIndexes[0]);
 
-            // Vertices to connect diferent y squares
+            // Vertices to connect diferent height squares
             if (
                 bottomNeighbor != null
                 && bottomNeighbor.y != currentSquare.y
@@ -163,13 +155,13 @@ public class TimberMap {
                 && bottomNeighbor.vertexIndexes[3] != -1
             ) {
                 // Should have a neighbor elevation
-                triangles.Add(bottomNeighbor.vertexIndexes[3]);
-                triangles.Add(bottomNeighbor.vertexIndexes[2]);
-                triangles.Add(currentSquare.vertexIndexes[1]);
+                this.triangles.Add(bottomNeighbor.vertexIndexes[3]);
+                this.triangles.Add(bottomNeighbor.vertexIndexes[2]);
+                this.triangles.Add(currentSquare.vertexIndexes[1]);
 
-                triangles.Add(currentSquare.vertexIndexes[1]);
-                triangles.Add(currentSquare.vertexIndexes[0]);
-                triangles.Add(bottomNeighbor.vertexIndexes[3]);
+                this.triangles.Add(currentSquare.vertexIndexes[1]);
+                this.triangles.Add(currentSquare.vertexIndexes[0]);
+                this.triangles.Add(bottomNeighbor.vertexIndexes[3]);
             }
 
             if (
@@ -178,13 +170,13 @@ public class TimberMap {
                 && leftNeighbor.vertexIndexes[3] != -1
                 && leftNeighbor.vertexIndexes[0] != -1
             ) {
-                triangles.Add(currentSquare.vertexIndexes[1]);
-                triangles.Add(leftNeighbor.vertexIndexes[0]);
-                triangles.Add(leftNeighbor.vertexIndexes[3]);
+                this.triangles.Add(currentSquare.vertexIndexes[1]);
+                this.triangles.Add(leftNeighbor.vertexIndexes[0]);
+                this.triangles.Add(leftNeighbor.vertexIndexes[3]);
 
-                triangles.Add(leftNeighbor.vertexIndexes[3]);
-                triangles.Add(currentSquare.vertexIndexes[2]);
-                triangles.Add(currentSquare.vertexIndexes[1]);
+                this.triangles.Add(leftNeighbor.vertexIndexes[3]);
+                this.triangles.Add(currentSquare.vertexIndexes[2]);
+                this.triangles.Add(currentSquare.vertexIndexes[1]);
             }
         }
     }
@@ -218,7 +210,7 @@ public class TimberMap {
     public void CreateMesh() {
         Mesh mesh = new Mesh();
         mesh.vertices = vertices.ToArray();
-        mesh.triangles = triangles.ToArray();
+        mesh.triangles = this.triangles.ToArray();
         mesh.RecalculateNormals();
         this.meshFilter.mesh = mesh;
     }

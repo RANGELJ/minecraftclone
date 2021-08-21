@@ -29,14 +29,14 @@ public class TimberMapSquare {
         }
     }
 
-    override public string ToString() {
-        return "(" + this.x + "," + this.y + "," + this.z + ")";
-    }
-
     public string GetVerticesAsString(List<Vector3> vertices) {
         return "[0]" + vertices[this.vertexIndexes[0]].ToString()
             + "[1]" + vertices[this.vertexIndexes[1]].ToString()
             + "[2]" + vertices[this.vertexIndexes[2]].ToString()
             + "[3]" + vertices[this.vertexIndexes[3]].ToString();
+    }
+
+    public Vector3 GetVertexFromCornerNumber(int index, List<Vector3> vertices) {
+        return vertices[this.vertexIndexes[index]];
     }
 }
