@@ -28,20 +28,11 @@ public class TimberWorld : MonoBehaviour {
     void Start() {
         this.map = new TimberMap(
             groundHeights: new int[]{
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,
-                0, 1, 1, 1, 0, 2, 2, 2, 2, 0, 1,
-                0, 0, 2, 2, 2, 2, 2, 3, 2, 0, 0,
-                0, 0, 2, 2, 2, 2, 2, 3, 2, 0, 0,
-                0, 0, 0, 2, 2, 2, 2, 3, 2, 0, 0,
-                0, 0, 0, 0, 2, 3, 3, 3, 2, 0, 0,
-                0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                0, 0,
+                0, 1
             },
-            width: 11,
-            height: 11,
+            width: 2,
+            height: 2,
             meshMaterial: this.mapMaterial
         );
         this.map.create();
