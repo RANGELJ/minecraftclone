@@ -28,17 +28,18 @@ public class TimberWorld : MonoBehaviour {
     void Start() {
         this.map = new TimberMap(
             groundHeights: new int[]{
-                0, 0,
-                0, 1
+                0, 0, 0, 1,
+                0, 1, 1, 0
             },
-            width: 2,
+            width: 4,
             height: 2,
             meshMaterial: this.mapMaterial
         );
-        this.map.create();
+        this.map.computeVerticesAndTriangles();
+        this.map.CreateMesh();
+        // StartCoroutine(this.map.BuildDebugMesh());
     }
 
-    // Update is called once per frame
     void Update() {
         this.secondsClock += Time.deltaTime;
 
@@ -54,7 +55,7 @@ public class TimberWorld : MonoBehaviour {
                 throw new System.Exception(currentSeasonName);
             }
             this.currentSeasonStartedAt = Mathf.RoundToInt(this.secondsClock);
-            Debug.Log("Changed to season: " + this.currentSeason.getName());
+            // Debug.Log("Changed to season: " + this.currentSeason.getName());
         }
     }
 
